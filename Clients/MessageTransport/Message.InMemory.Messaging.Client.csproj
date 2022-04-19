@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B64525D6-4422-426B-B2CA-84A67544B573}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Message.InMemory.Messaging.Client</RootNamespace>
+    <AssemblyName>Message.InMemory.Messaging.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="HandlerBase.cs" />
+    <Compile Include="HandlerFactorySettings.cs" />
+    <Compile Include="LogErrorCommandHandler.cs" />
+    <Compile Include="CommandServiceInitialiser.cs" />
+    <Compile Include="MockLogProvider.cs" />
+    <Compile Include="MessageListener.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Compression\DeflateCompression\DeflateCompression.csproj">
+      <Project>{E43F61D6-1957-48E8-9D1A-5B55B736C09E}</Project>
+      <Name>DeflateCompression</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CQRS\CQRS.InMemoryTransport\Messaging.InMemoryTransport.csproj">
+      <Project>{F92A9FE2-55C7-4BDE-8DAB-C00E6DBA30BB}</Project>
+      <Name>Messaging.InMemoryTransport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CQRS\CQRS.MessageDistpacher\Messaging.MessageDistpacher.csproj">
+      <Project>{285CF304-F9BF-4301-9E5C-FA8521E31BBC}</Project>
+      <Name>Messaging.MessageDistpacher</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\CQRS.Infrastructure\Messaging.Infrastructure.csproj">
+      <Project>{496E6B52-33D0-4E4E-945F-692E97642506}</Project>
+      <Name>Messaging.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Kernel\Kernel.Compression\Kernel.Compression.csproj">
+      <Project>{439DC5B8-1177-454E-94EC-8A8D2DDC9E22}</Project>
+      <Name>Kernel.Compression</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Kernel\Kernel.CQRS\Kernel.Messaging.csproj">
+      <Project>{DBE9A282-F646-41C9-896D-00ABDC5B9AAD}</Project>
+      <Name>Kernel.Messaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Kernel\Kernel.Logging\Kernel.Logging.csproj">
+      <Project>{7DA939D6-5443-498F-AAA1-3CE3134BC3EB}</Project>
+      <Name>Kernel.Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Kernel\Kernel\Kernel.csproj">
+      <Project>{E198C691-91A6-4082-9976-F5F006F24960}</Project>
+      <Name>Kernel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Serialisation\Serialisation.JSON\Serialisation.JSON.csproj">
+      <Project>{4EB8AB3B-2E70-410F-AA9B-8F1C9490FA3A}</Project>
+      <Name>Serialisation.JSON</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Server\ServerInitialisation\ServerInitialisation.csproj">
+      <Project>{9670D9D3-7652-42AC-80A7-B9B5D07A0B4C}</Project>
+      <Name>ServerInitialisation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
