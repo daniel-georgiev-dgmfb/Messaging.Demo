@@ -39,25 +39,25 @@ namespace UnityResolver
 		/// forward direction.
 		/// </summary>
 		/// <param name="context">Context of the build operation.</param>
-		public override object PreBuildUp(BuilderContext context)
-		{
-			if (!context.BuildKey.Type.FullName.StartsWith("Microsoft.Practices"))
-			{
-				var properties = context.BuildKey.Type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
-					.Where(x => x.CanWrite && x.SetMethod.IsPublic);
+		//public override object PreBuildUp(BuilderContext context)
+		//{
+		//	if (!context.BuildKey.Type.FullName.StartsWith("Microsoft.Practices"))
+		//	{
+		//		var properties = context.BuildKey.Type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+		//			.Where(x => x.CanWrite && x.SetMethod.IsPublic);
 
-				foreach (var property in properties)
-				{
-					if (unityContainer.IsRegistered(property.PropertyType)
-					   && this.GetPropertyValue(context.Existing, property) == null)
-					{
-						var resolvedValue = unityContainer.Resolve(property.PropertyType);
-						this.SetPropertyValue(context.Existing, property, resolvedValue);
-					}
-				}
-			}
-            return context.Existing;
-		}
+		//		foreach (var property in properties)
+		//		{
+		//			if (unityContainer.IsRegistered(property.PropertyType)
+		//			   && this.GetPropertyValue(context.Existing, property) == null)
+		//			{
+		//				var resolvedValue = unityContainer.Resolve(property.PropertyType);
+		//				this.SetPropertyValue(context.Existing, property, resolvedValue);
+		//			}
+		//		}
+		//	}
+  //          return context.Existing;
+		//}
 
 		/// <summary>
 		/// Gets the property value. Builds a property get accesssor expression if not found in the cache
@@ -65,25 +65,25 @@ namespace UnityResolver
 		/// <param name="target">The target.</param>
 		/// <param name="propertyInfo">The property information.</param>
 		/// <returns></returns>
-		private object GetPropertyValue(object target, PropertyInfo propertyInfo)
-		{
-			var key = Tuple.Create(target.GetType(), propertyInfo);
-			var getDelegate = PropertyInjectionBuilderStrategy.GetDelegateCache.GetOrAdd(key, TypeExtensions.GetInstancePropertyDelegate<object>(key.Item1, propertyInfo.Name));
-			var value = getDelegate(target);
-			return value;
-		}
+		//private object GetPropertyValue(object target, PropertyInfo propertyInfo)
+		//{
+		//	var key = Tuple.Create(target.GetType(), propertyInfo);
+		//	var getDelegate = PropertyInjectionBuilderStrategy.GetDelegateCache.GetOrAdd(key, TypeExtensions.GetInstancePropertyDelegate<object>(key.Item1, propertyInfo.Name));
+		//	var value = getDelegate(target);
+		//	return value;
+		//}
 
-		/// <summary>
-		/// Sets the property value. Builds a property set accessor if not found in the cache
-		/// </summary>
-		/// <param name="target">The target.</param>
-		/// <param name="propertyInfo">The property information.</param>
-		/// <param name="valueToAssign">The value to assign.</param>
-		private void SetPropertyValue(object target, PropertyInfo propertyInfo, object valueToAssign)
-		{
-			var key = Tuple.Create(target.GetType(), propertyInfo);
-			var getDelegate = PropertyInjectionBuilderStrategy.SetDelegateCache.GetOrAdd(key, TypeExtensions.GetAssignPropertyDelegate(key.Item1, propertyInfo.Name));
-			getDelegate(target, valueToAssign);
-		}
+		///// <summary>
+		///// Sets the property value. Builds a property set accessor if not found in the cache
+		///// </summary>
+		///// <param name="target">The target.</param>
+		///// <param name="propertyInfo">The property information.</param>
+		///// <param name="valueToAssign">The value to assign.</param>
+		//private void SetPropertyValue(object target, PropertyInfo propertyInfo, object valueToAssign)
+		//{
+		//	var key = Tuple.Create(target.GetType(), propertyInfo);
+		//	var getDelegate = PropertyInjectionBuilderStrategy.SetDelegateCache.GetOrAdd(key, TypeExtensions.GetAssignPropertyDelegate(key.Item1, propertyInfo.Name));
+		//	getDelegate(target, valueToAssign);
+		//}
 	}
 }

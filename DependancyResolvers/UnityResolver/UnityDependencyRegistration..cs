@@ -46,18 +46,19 @@ namespace UnityResolver
 		/// <returns></returns>
 		public IDependencyResolver RegisterInstance<T>(string name, T instance, Lifetime lifetime)
 		{
-			this.CheckIsDisposed();
-			UnityDependencyResolver.readerWriterLock.EnterWriteLock();
-			try
-			{
-				var lifeManager = this.GetLifeTimeManger(lifetime);
-				this.container.RegisterInstance<T>(name, instance, lifeManager);
-			}
-			finally
-			{
-				UnityDependencyResolver.readerWriterLock.ExitWriteLock();
-			}
-			return this;
+			throw new NotImplementedException();
+			//this.CheckIsDisposed();
+			//UnityDependencyResolver.readerWriterLock.EnterWriteLock();
+			//try
+			//{
+			//	var lifeManager = this.GetLifeTimeManger(lifetime);
+			//	this.container.RegisterInstance<T>(name, instance, lifeManager);
+			//}
+			//finally
+			//{
+			//	UnityDependencyResolver.readerWriterLock.ExitWriteLock();
+			//}
+			//return this;
 		}
 
 		/// <summary>
@@ -69,18 +70,19 @@ namespace UnityResolver
 		/// <returns></returns>
 		public IDependencyResolver RegisterInstance<T>(T instance, Lifetime lifetime)
 		{
-			this.CheckIsDisposed();
-			UnityDependencyResolver.readerWriterLock.EnterWriteLock();
-			try
-			{
-				var lifeManager = this.GetLifeTimeManger(lifetime);
-				this.container.RegisterInstance<T>(instance, lifeManager);
-			}
-			finally
-			{
-				UnityDependencyResolver.readerWriterLock.ExitWriteLock();
-			}
-			return this;
+			throw new NotImplementedException();
+			//this.CheckIsDisposed();
+			//UnityDependencyResolver.readerWriterLock.EnterWriteLock();
+			//try
+			//{
+			//	var lifeManager = this.GetLifeTimeManger(lifetime);
+			//	this.container.RegisterInstance<T>(instance, lifeManager);
+			//}
+			//finally
+			//{
+			//	UnityDependencyResolver.readerWriterLock.ExitWriteLock();
+			//}
+			//return this;
 		}
 
 		/// <summary>
@@ -93,18 +95,19 @@ namespace UnityResolver
 		/// <returns></returns>
 		public IDependencyResolver RegisterInstance(Type t, string name, object instance, Lifetime lifetime)
 		{
-			this.CheckIsDisposed();
-			UnityDependencyResolver.readerWriterLock.EnterWriteLock();
-			try
-			{
-				var lifeManager = this.GetLifeTimeManger(lifetime);
-				this.container.RegisterInstance(name, instance, lifeManager);
-			}
-			finally
-			{
-				UnityDependencyResolver.readerWriterLock.ExitWriteLock();
-			}
-			return this;
+			throw new NotImplementedException();
+			//this.CheckIsDisposed();
+			//UnityDependencyResolver.readerWriterLock.EnterWriteLock();
+			//try
+			//{
+			//	var lifeManager = this.GetLifeTimeManger(lifetime);
+			//	this.container.RegisterInstance(name, instance, lifeManager);
+			//}
+			//finally
+			//{
+			//	UnityDependencyResolver.readerWriterLock.ExitWriteLock();
+			//}
+			//return this;
 		}
 
 		#endregion
@@ -194,21 +197,22 @@ namespace UnityResolver
 		/// <returns></returns>
 		public IDependencyResolver RegisterType(Type type, Lifetime lifetime)
 		{
-			this.CheckIsDisposed();
-			UnityDependencyResolver.readerWriterLock.EnterWriteLock();
-			try
-			{
-				var lifeManger = this.GetLifeTimeManger(lifetime);
+			throw new NotImplementedException();
+			//this.CheckIsDisposed();
+			//UnityDependencyResolver.readerWriterLock.EnterWriteLock();
+			//try
+			//{
+			//	var lifeManger = this.GetLifeTimeManger(lifetime);
 
-				this.container.RegisterType(type, lifeManger);
-				this.RegisterInheritance(type, lifetime);
-			}
-			finally
-			{
-				UnityDependencyResolver.readerWriterLock.ExitWriteLock();
-			}
+			//	this.container.RegisterType(type, lifeManger);
+			//	this.RegisterInheritance(type, lifetime);
+			//}
+			//finally
+			//{
+			//	UnityDependencyResolver.readerWriterLock.ExitWriteLock();
+			//}
 
-			return this;
+			//return this;
 		}
 
 		/// <summary>
@@ -290,22 +294,24 @@ namespace UnityResolver
 
 		private void RegisterBaseOrInterface(Type from, Type to, Lifetime lifetime)
 		{
-			var lifeManger = this.GetLifeTimeManger(lifetime);
+			throw new NotImplementedException();
+			//var lifeManger = this.GetLifeTimeManger(lifetime);
 
-			if (!this.Contains(from))
-				this.container.RegisterType(from, to, null, lifeManger);
-			else
-				this.container.RegisterType(from, to, Guid.NewGuid().ToString(), lifeManger);
-			this.RegisterGenericDefinition(from, to, lifetime);
+			//if (!this.Contains(from))
+			//	this.container.RegisterType(from, to, null, lifeManger);
+			//else
+			//	this.container.RegisterType(from, to, Guid.NewGuid().ToString(), lifeManger);
+			//this.RegisterGenericDefinition(from, to, lifetime);
 		}
 
 		private void RegisterGenericDefinition(Type from, Type to, Lifetime lifetime)
 		{
-			if (!from.IsGenericType)
-				return;
-			var genericDefinition = from.GetGenericTypeDefinition();
-			var lifeManger = this.GetLifeTimeManger(lifetime);
-			this.container.RegisterType(genericDefinition, to, null, lifeManger);
+			throw new NotImplementedException();
+			//if (!from.IsGenericType)
+			//	return;
+			//var genericDefinition = from.GetGenericTypeDefinition();
+			//var lifeManger = this.GetLifeTimeManger(lifetime);
+			//this.container.RegisterType(genericDefinition, to, null, lifeManger);
 		}
 
 		private LifetimeManager GetLifeTimeManger(Lifetime lifeTime)

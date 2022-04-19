@@ -1,4 +1,6 @@
-﻿namespace UnityResolverTests_L0
+﻿using NUnit.Framework;
+
+namespace UnityResolverTests_L0
 {
     public class TestsBase
     {
