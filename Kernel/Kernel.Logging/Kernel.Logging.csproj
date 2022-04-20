@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExceptionNotificationSettingsProvider.cs" />
+    <Compile Include="ExceptionStatistics.cs" />
     <Compile Include="IdentityContext.cs" />
     <Compile Include="AbstractLogger.cs" />
     <Compile Include="AbstractLogWriter.cs" />

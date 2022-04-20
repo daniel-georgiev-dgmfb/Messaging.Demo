@@ -58,6 +58,10 @@
       <Project>{dbe9a282-f646-41c9-896d-00abdc5b9aad}</Project>
       <Name>Kernel.Messaging</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Kernel\Kernel\Kernel.csproj">
+      <Project>{E198C691-91A6-4082-9976-F5F006F24960}</Project>
+      <Name>Kernel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

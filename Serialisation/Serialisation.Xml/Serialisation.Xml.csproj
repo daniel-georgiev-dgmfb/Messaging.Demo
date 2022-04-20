@@ -51,6 +51,10 @@
       <Project>{FA2CD1BF-A890-4306-9EDB-A1B10042E57E}</Project>
       <Name>Shared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Kernel\Kernel\Kernel.csproj">
+      <Project>{E198C691-91A6-4082-9976-F5F006F24960}</Project>
+      <Name>Kernel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

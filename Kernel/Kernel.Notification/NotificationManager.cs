@@ -1,8 +1,8 @@
 ﻿namespace Kernel.Notification
 {
-    using System.Linq;
     using Kernel.DependancyResolver;
     using Kernel.Logging;
+    using System.Linq;
 
     public abstract class NotificationManager
     {

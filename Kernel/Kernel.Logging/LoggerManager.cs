@@ -1,7 +1,9 @@
 ﻿namespace Kernel.Logging
 {
     using Kernel.Configuration;
+    using Kernel.Logging.SettingsProviders;
     using System;
+    using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
     using System.Text;
@@ -12,7 +14,7 @@
         /// <summary>
         /// Retains the the statistics of exception of given type.
         /// </summary>
-        //private static Dictionary<Type, ExceptionStatistics> _exceptionStatistics = new Dictionary<Type, ExceptionStatistics>();
+        private static IDictionary<Type, ExceptionStatistics> _exceptionStatistics = new Dictionary<Type, ExceptionStatistics>();
         
         /// <summary>
         /// Implementation of Unity logger
@@ -44,20 +46,20 @@
         /// <param name="arguments">The arguments.</param>
         public void EnqueueExceptionSync(Exception exceptionToLog, params object[] arguments)
         {
-            try
-            {
-                SendNotificationSync(exceptionToLog);
+            //try
+            //{
+            //    SendNotificationSync(exceptionToLog);
 
-                if (!TryBuildLogger(exceptionToLog))
-                    return;
+            //    if (!TryBuildLogger(exceptionToLog))
+            //        return;
 
-                LogExceptionInternal(exceptionToLog, arguments);
+            //    LogExceptionInternal(exceptionToLog, arguments);
 
-            }
-            catch (Exception ex)
-            {
-                HandleExceptionFromLoggerAndNotification(ex);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    HandleExceptionFromLoggerAndNotification(ex);
+            //}
         }
 
         /// <summary>
@@ -67,28 +69,28 @@
         /// <param name="arguments">The arguments.</param>
         public async Task EnqueueExceptionAsync(Exception exceptionToLog, params object[] arguments)
         {
-            try
-            {
-                var emailTask = SendNotificationAsync(exceptionToLog);
+            //try
+            //{
+            //    var emailTask = SendNotificationAsync(exceptionToLog);
 
-                if (!TryBuildLogger(exceptionToLog))
-                {
-                    await emailTask;
+            //    if (!TryBuildLogger(exceptionToLog))
+            //    {
+            //        await emailTask;
 
-                    return;
-                }
+            //        return;
+            //    }
 
-                var loggingTask = Task.Factory.StartNew(() =>
-                {
-                    LogExceptionInternal(exceptionToLog, arguments);
-                });
+            //    var loggingTask = Task.Factory.StartNew(() =>
+            //    {
+            //        LogExceptionInternal(exceptionToLog, arguments);
+            //    });
 
-                await Task.WhenAll(new Task[] { loggingTask, emailTask });
-            }
-            catch (Exception ex)
-            {
-                HandleExceptionFromLoggerAndNotification(ex);
-            }
+            //    await Task.WhenAll(new Task[] { loggingTask, emailTask });
+            //}
+            //catch (Exception ex)
+            //{
+            //    HandleExceptionFromLoggerAndNotification(ex);
+            //}
         }
 
         /// <summary>
@@ -212,7 +214,7 @@
         {
             var t = Task.Factory.StartNew(e =>
             {
-                SendEmailForException(e);
+                //SendEmailForException(e);
             }, exception);
             
             await t;
@@ -226,7 +228,7 @@
         {
             try
             {
-                SendEmailForException(exception);
+                //SendEmailForException(exception);
             }
             catch (Exception ex)
             {
@@ -238,71 +240,71 @@
         /// Sends an email to defined recipients
         /// </summary>
         /// <param name="exception"></param>
-        public static void SendEmailForException(object exception)
-        {
-			//var notificationProvider = new ExceptionNotificationSettingsProvider();
+        //public static void SendEmailForException(object exception)
+        //{
+        //    var notificationProvider = new ExceptionNotificationSettingsProvider();
 
-			//if (!notificationProvider.IsInitialised)
-			//	notificationProvider.WaitToInitialise();
+        //    if (!notificationProvider.IsInitialised)
+        //        notificationProvider.WaitToInitialise();
 
-			//if (((SettingsProviderBase)notificationProvider).HasError)
-			//{
-			//	var providerError = ((SettingsProviderBase)notificationProvider).Error;
+        //    if (((SettingsProviderBase)notificationProvider).HasError)
+        //    {
+        //        var providerError = ((SettingsProviderBase)notificationProvider).Error;
 
-			//	var exceptionDetails = BuildExceptionStringRecursively(providerError);
+        //        var exceptionDetails = BuildExceptionStringRecursively(providerError);
 
-			//	WriteWarningToEventLog(string.Format("Notification provider has failed to initialise. Error details are:\r\n{0}.", exceptionDetails));
+        //        WriteWarningToEventLog(string.Format("Notification provider has failed to initialise. Error details are:\r\n{0}.", exceptionDetails));
 
-			//	return;
-			//}
+        //        return;
+        //    }
 
-			//var ex = exception as Exception;
+        //    var ex = exception as Exception;
 
-			//if (ex == null)
-			//{
-			//	throw new ArgumentException("The object has to derive from exception", "Exception");
-			//}
+        //    if (ex == null)
+        //    {
+        //        throw new ArgumentException("The object has to derive from exception", "Exception");
+        //    }
 
-			//var settings = FindSetting(ex);
+        //    var settings = FindSetting(ex);
 
-			//if(settings == null)
-			//{
-			//	return;
-			//}
+        //    if (settings == null)
+        //    {
+        //        return;
+        //    }
 
-			//if (_exceptionStatistics.ContainsKey(settings.NotificationEntryType))
-			//{
-			//	var lastSentEmailTime = _exceptionStatistics[settings.NotificationEntryType].LastNotificationSentOn;
+        //    if (_exceptionStatistics.ContainsKey(settings.NotificationEntryType))
+        //    {
+        //        var lastSentEmailTime = _exceptionStatistics[settings.NotificationEntryType].LastNotificationSentOn;
 
-			//	if (settings.TimeSpan > TimeSpan.MinValue && DateTime.Now.Subtract(lastSentEmailTime) < settings.TimeSpan)
-			//		return;
-			//}
+        //        if (settings.TimeSpan > TimeSpan.MinValue && DateTime.Now.Subtract(lastSentEmailTime) < settings.TimeSpan)
+        //            return;
+        //    }
 
-			//var mailMessage = ExceptionNotificationSettingsProvider.EmailMessageClone;
+        //    var mailMessage = ExceptionNotificationSettingsProvider.EmailMessageClone;
 
-			////should override the recipients or add them as CC
-			//if (settings.To != null && settings.To.Count() > 0)
-			//	mailMessage.To = settings.To;
+        //    //should override the recipients or add them as CC
+        //    if (settings.To != null && settings.To.Count() > 0)
+        //        mailMessage.To = settings.To;
 
-			//var exceptionDetail = BuildExceptionStringRecursively(ex);
+        //    var exceptionDetail = BuildExceptionStringRecursively(ex);
 
-			//var stackTrace = new EmailMessage.EmailAttachment
-			//{
-			//	AttachmentName = "Exception Details.txt",
-			//	Attachment = Encoding.UTF8.GetBytes(exceptionDetail),
-			//	MimeType =  MediaTypeNames.Text.Plain
-			//};
+        //    var stackTrace = new EmailMessage.EmailAttachment
+        //    {
+        //        AttachmentName = "Exception Details.txt",
+        //        Attachment = Encoding.UTF8.GetBytes(exceptionDetail),
+        //        MimeType = MediaTypeNames.Text.Plain
+        //    };
 
-			//mailMessage.Attachments.Add(stackTrace);
+        //    mailMessage.Attachments.Add(stackTrace);
 
-			//var notificationManager = new NotificationManager();
+        //    var notificationManager = new NotificationManager();
 
-			//notificationManager.SendEmail(mailMessage);
+        //    notificationManager.SendEmail(mailMessage);
 
-			//var stat = new ExceptionStatistics { LastNotificationSentOn = DateTime.Now };
+        //    var stat = new ExceptionStatistics { LastNotificationSentOn = DateTime.Now };
 
-			//_exceptionStatistics[settings.NotificationEntryType] = stat;
-        }
+        //    _exceptionStatistics[settings.NotificationEntryType] = stat;
+        //}
 
         /// <summary>
         /// Retrieves settings for the exception type requested
@@ -347,37 +349,37 @@
         /// <summary>
         /// Builds the logger from DI container if it's configured and the logger is registered
         /// </summary>
-        private bool TryBuildLogger(Exception exceptionToLog)
-        {
-            if (_logger != null)
-                return true;
+   //     private bool TryBuildLogger(Exception exceptionToLog)
+   //     {
+   //         if (_logger != null)
+   //             return true;
 
-            if (ApplicationConfiguration.Instance.DependencyResolver == null)
-            {
-                WriteWarningToEventLog("No dependency resolver has been set up. Alghtough the exception has not been logged you could see the details of the exception in the S3ID event log");
+   //         if (ApplicationConfiguration.Instance.DependencyResolver == null)
+   //         {
+   //             WriteWarningToEventLog("No dependency resolver has been set up. Alghtough the exception has not been logged you could see the details of the exception in the S3ID event log");
 
-                WriteExceptionToEventLog(exceptionToLog);
+   //             WriteExceptionToEventLog(exceptionToLog);
 
-                return false;
-            }
+   //             return false;
+   //         }
 
-			var resolver = ApplicationConfiguration.Instance.DependencyResolver;
+			//var resolver = ApplicationConfiguration.Instance.DependencyResolver;
 
             
-                _logger = resolver.ResolveAll<ILogProvider>()
-					.FirstOrDefault();
+   //             _logger = resolver.ResolveAll<ILogProvider>()
+			//		.FirstOrDefault();
 
-                if (_logger == null)
-                {
-                    WriteWarningToEventLog("No implementation of ILogProvider has been found in DI container. Make sure it is registered in the container. The exception has not been processed. You could see the details of the exception in the Unity event log");
+   //             if (_logger == null)
+   //             {
+   //                 WriteWarningToEventLog("No implementation of ILogProvider has been found in DI container. Make sure it is registered in the container. The exception has not been processed. You could see the details of the exception in the Unity event log");
 
-                    WriteExceptionToEventLog(exceptionToLog);
+   //                 WriteExceptionToEventLog(exceptionToLog);
 
-                    return false;
-                }
+   //                 return false;
+   //             }
 
-            return true;
-        }
+   //         return true;
+   //     }
 
         /// <summary>
         /// Logs the exception internal.

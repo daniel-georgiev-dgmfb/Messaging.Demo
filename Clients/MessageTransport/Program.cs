@@ -1,7 +1,5 @@
 ﻿using CQRS.Infrastructure.Commands.Logging;
 using DeflateCompression;
-using Kernel.Initialisation;
-using Kernel.Logging;
 using Message.InMemory.Messaging.Client.Logging;
 using Messaging.Infrastructure.Transport;
 using Messaging.InMemoryTransport;
@@ -13,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Message.InMemory.Messaging.Client
 {
-	class Program
+    class Program
     {
         static async Task Main(string[] args)
         {

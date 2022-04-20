@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using Kernel.DependancyResolver;
+﻿using Kernel.DependancyResolver;
 using Shared.Initialisation;
+using System.Threading.Tasks;
 
 namespace Serialisation.Xml.Initialisation
 {

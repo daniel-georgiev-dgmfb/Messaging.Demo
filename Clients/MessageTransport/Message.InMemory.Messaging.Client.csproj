@@ -88,6 +88,10 @@
       <Project>{7DA939D6-5443-498F-AAA1-3CE3134BC3EB}</Project>
       <Name>Kernel.Logging</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Kernel\Kernel\Kernel.csproj">
+      <Project>{E198C691-91A6-4082-9976-F5F006F24960}</Project>
+      <Name>Kernel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Serialisation\Serialisation.JSON\Serialisation.JSON.csproj">
       <Project>{4EB8AB3B-2E70-410F-AA9B-8F1C9490FA3A}</Project>
       <Name>Serialisation.JSON</Name>

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using DeflateCompression.Initialisation;
+﻿using DeflateCompression.Initialisation;
 using Kernel.DependancyResolver;
 using Kernel.Initialisation;
 using Kernel.Logging;
@@ -17,10 +11,16 @@ using Messaging.InMemoryTransport.Initialisation;
 using Serialisation.JSON.Initialisation;
 using Serialisation.Xml.Initialisation;
 using Shared.Initialisation;
+using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Threading.Tasks;
 
 namespace ServerInitialisation
 {
-	public class ServerInitialiser : IServerInitialiser
+    public class ServerInitialiser : IServerInitialiser
 	{
         private Action _onInitialised = () => { };
         private IEnumerable<Assembly> AssemblyToAdd
