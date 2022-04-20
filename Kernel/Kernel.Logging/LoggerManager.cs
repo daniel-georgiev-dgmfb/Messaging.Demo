@@ -1,12 +1,11 @@
 ﻿namespace Kernel.Logging
 {
+    using Kernel.Configuration;
     using System;
     using System.Diagnostics;
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
-    using Kernel.Configuration;
-    using Kernel.Initialisation;
 
     public class LoggerManager : IDisposable
     {

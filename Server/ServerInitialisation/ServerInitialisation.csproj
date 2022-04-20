@@ -76,10 +76,6 @@
       <Project>{2a6ba5fb-dbaa-457a-9cb3-9ba74a96551b}</Project>
       <Name>Kernel.Reflection</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Kernel\Kernel\Kernel.csproj">
-      <Project>{e198c691-91a6-4082-9976-f5f006f24960}</Project>
-      <Name>Kernel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Logging\Logging.csproj">
       <Project>{FABF809F-F00C-430C-AF7A-5639240A641F}</Project>
       <Name>Logging</Name>

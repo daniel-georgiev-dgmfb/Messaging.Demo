@@ -58,10 +58,6 @@
       <Project>{5a1d47f4-b15f-4f42-8eaf-24f1474fe503}</Project>
       <Name>Kernel.Cache</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Kernel\Kernel\Kernel.csproj">
-      <Project>{E198C691-91A6-4082-9976-F5F006F24960}</Project>
-      <Name>Kernel</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -57,7 +57,7 @@
       <Name>Shared</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Kernel\Kernel\Kernel.csproj">
-      <Project>{E198C691-91A6-4082-9976-F5F006F24960}</Project>
+      <Project>{e198c691-91a6-4082-9976-f5f006f24960}</Project>
       <Name>Kernel</Name>
     </ProjectReference>
   </ItemGroup>

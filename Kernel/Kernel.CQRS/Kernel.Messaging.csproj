@@ -57,11 +57,5 @@
     <Compile Include="ITransportConfiguration.cs" />
     <Compile Include="ITransportManager.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Kernel\Kernel.csproj">
-      <Project>{e198c691-91a6-4082-9976-f5f006f24960}</Project>
-      <Name>Kernel</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
